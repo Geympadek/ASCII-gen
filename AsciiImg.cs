@@ -53,13 +53,33 @@ namespace ASCII_gen
 
             return Color.FromArgb(a, r, g, b);
         }
+        static private double NormalizeScale(double scale, int imgWidth, int imgHeight, GenInfo info)
+        {
+            var widthChar = imgWidth / info.charWidth;
+            var heightChar = imgHeight / info.charHeight;
+
+            if (imgWidth >= imgHeight)
+            {
+                scale *= (double)info.normalWidth / widthChar;
+            }
+            else
+            {
+                scale *= (double)info.normalHeight / heightChar;
+            }
+            return scale;
+        }
         static private Color[,] GenColoredImage(Color[,] pixels, GenInfo info, double scale)
         {
+            int pixelWidth = pixels.GetLength(0);
+            int pixelHeight = pixels.GetLength(1);
+
+            scale = NormalizeScale(scale, pixelWidth, pixelHeight, info);
+
             double charWidth = info.charWidth / scale;
             double charHeight = info.charHeight / scale;
 
-            int width = (int)(pixels.GetLength(0) / charWidth);
-            int height = (int)(pixels.GetLength(1) / charHeight);
+            int width = (int)(pixelWidth/ charWidth);
+            int height = (int)(pixelHeight / charHeight);
             Color[,] image = new Color[width, height];
 
             for (int x = 0; x < width; x++)

@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace ASCII_gen
 {
-    class GenInfo(int charWidth = 11, int charHeight = 24, string gradient = " .:!/r(l1Z4H9W8$@")
+    class GenInfo(int charWidth = 11, int charHeight = 24, string gradient = " .:!/r(l1Z4H9W8$@", int normalWidth = 44, int normalHeight = 24)
     {
         [JsonInclude]
         public int charWidth = charWidth;
@@ -16,5 +16,10 @@ namespace ASCII_gen
         public int charHeight = charHeight;
         [JsonInclude]
         public string gradient = gradient;
+
+        [JsonInclude]
+        public int normalWidth = normalWidth;
+        [JsonInclude]
+        public int normalHeight = normalHeight;
     }
 }
