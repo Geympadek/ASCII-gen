@@ -34,8 +34,4 @@ internal class Program
             Console.WriteLine("Enter a valid value!");
         }
     }
-    //static void SaveAsciiImage(char[,] img)
-    //{
-    //    File.WriteAllText
-    //}
 }
